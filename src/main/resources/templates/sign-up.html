@@ -1,0 +1,22 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common :: head"></head>
+<link rel="stylesheet" href="/css/post.css">
+<body>
+<div class="root">
+  <div class="container">
+    <header th:replace="fragments/common :: header-without-write-btn"></header>
+    <section>
+      <div>
+        sign-up
+        <form method="post" action="/auth/sign-up">
+          <input type="text" name="username" id="username">
+          <input type="text" name="password" id="password">
+          <button>회원가입</button>
+        </form>
+      </div>
+    </section>
+    <footer th:replace="fragments/common :: footer"></footer>
+  </div>
+</div>
+</body>
+</html>

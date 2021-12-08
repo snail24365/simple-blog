@@ -1,0 +1,90 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/css/common.css">
+  <title>Document</title>
+</head>
+<body>
+<div class="root">
+  <div class="container">
+    <header th:fragment="header">
+      <div class="header-inner">
+        <span class="header-title">
+          Nickname's Blog2
+        </span>
+        <a href="/post/write">
+          <div class="writing-link-btn">
+            <i class='bx bx-edit-alt' ></i>
+          </div>
+        </a>
+      </div>
+    </header>
+
+    <header th:fragment="header-without-write-btn">
+      <div class="header-inner">
+        <span class="header-title">
+          Nickname's Blog2
+        </span>
+      </div>
+    </header>
+
+    <section th:fragment="section">
+      <ul class="post-container" th:each="post : ${posts}">
+        <li class="post-item card post">
+          <a href="/post/1">
+            <div>
+              <h1 th:text="${post.title}" class="post-title">post tile</h1>
+              <p th:text="${post.contents}" class="post-contents">
+                Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .
+              </p>
+            </div>
+          </a>
+        </li>
+        <li class="post-item card post">
+          <a href="/post/1">
+            <div>
+              <h1 th:text="${post.title}" class="post-title">post tile</h1>
+              <p th:text="${post.contents}" class="post-contents">
+                Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .
+              </p>
+            </div>
+          </a>
+        </li>
+
+      </ul>
+
+      <div class="page-index-bar">
+        <ul class="index-list">
+          <span class="index-left-btn">&lt;</span>
+          <th:block th:each="index : ${pageIndexes}">
+            <a href="/post/3">
+              <span class="index" th:text="${index}">1</span>
+            </a>
+          </th:block>
+          <span th:text="${index}">
+            <a href="/post/3">
+              <span class="index" th:text="${index}">1</span>
+            </a>
+          </span>
+          <span th:text="${index}">
+            <a href="/post/3">
+              <span class="index" th:text="${index}">1</span>
+            </a>
+          </span>
+          <span class="index-right-btn">&gt;</span>
+        </ul>
+      </div>
+
+    </section>
+
+    <footer th:fragment="footer">
+      <p class="made-by">Made By Seunghui Choi</p>
+      <p class="contact-me">Contact me : <a href="mailto:front5192@gmail.com">front5192@gmail.com</a></p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

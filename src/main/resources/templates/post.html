@@ -1,0 +1,21 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common :: head"></head>
+<link rel="stylesheet" href="/css/post.css">
+<body>
+<div class="root">
+  <div class="container">
+    <header th:replace="fragments/common :: header"></header>
+    <section>
+      <div>
+        <div th:object="${post}">
+          <p class="title-paragraph card"><span th:text="*{title}">Sebastian</span>.</p>
+          <hr/>
+          <p class="contents-paragraph card"><span th:text="*{contents}">Pepper</span>.</p>
+        </div>
+      </div>
+    </section>
+    <footer th:replace="fragments/common :: footer"></footer>
+  </div>
+</div>
+</body>
+</html>

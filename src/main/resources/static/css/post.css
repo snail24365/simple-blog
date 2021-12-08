@@ -1,0 +1,17 @@
+.card {
+  border: 16px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: #AAA 1px 2px 3px 4px;
+}
+
+.title-paragraph {
+  background-color: #ddd;
+  font-size: 36px;
+}
+
+.contents-paragraph {
+  min-height: 400px;
+  font-size: 18px;
+}
