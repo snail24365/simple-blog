@@ -4,6 +4,7 @@ import com.simple.blog.service.PrincipalDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -42,13 +43,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     http
       .csrf().disable()
-      .authorizeRequests().antMatchers("/post/**").authenticated()
+      .authorizeRequests().antMatchers("/", "/post/**").authenticated()
       .anyRequest().permitAll()
       .and()
       .formLogin()
       .loginProcessingUrl("/auth/login")
+      .loginPage("/auth/sign-in")
+      .successHandler((request, response, authentication) -> {
+        response.setStatus(HttpStatus.OK.value());
+      })
       .defaultSuccessUrl("/post?pageId=0")
-      .failureUrl("/auth/sign-in");
+      .failureHandler((request, response, exception) -> {
+        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+      });
   }
 
   @Bean

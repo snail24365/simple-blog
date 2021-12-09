@@ -1,0 +1,71 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common :: head"></head>
+<body>
+<div class="root">
+  <div class="container">
+    <header th:replace="fragments/common :: header"></header>
+    <section>
+      <div>
+        <div class="form-box">
+          <input th:value="${title}" class="title-paragraph card" type="text" id="title" placeholder="제목">
+          <textarea th:text="${contents}" class="contents-paragraph card" type="text" id="contents" placeholder="본문"></textarea>
+          <button class="enroll-btn" type="submit" id="updateButton">수정 완료</button>
+        </div>
+      </div>
+    </section>
+    <footer th:replace="fragments/common :: footer"></footer>
+  </div>
+</div>
+</body>
+<style>
+/**/
+.card {
+  border: 16px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: #AAA 1px 2px 3px 4px;
+}
+
+.title-paragraph {
+  background-color: #ddd;
+  font-size: 36px;
+}
+
+.contents-paragraph {
+  min-height: 400px;
+  font-size: 18px;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.enroll-btn {
+  height: 34px;
+}
+
+</style>
+<script>
+/**/
+
+document.querySelector("#updateButton").onclick = (e) => {
+  var title = document.querySelector("#title").value;
+  var contents = document.querySelector("#contents").value;
+  var data = {title: title, contents:contents};
+  var postId = parseInt(window.location.search.replace("?postId=", ""));
+  var url = "/post/" + postId
+
+  axios.put(url, Qs.stringify(data), {headers : {'Content-Type': 'application/x-www-form-urlencoded'}})
+    .then((response) =>{
+      window.location.href = "/";
+    })
+    .catch((e) => {
+      alert("수정에 실패하였습니다. 다시 요청해주세요.")
+    }
+  );
+}
+</script>
+</html>

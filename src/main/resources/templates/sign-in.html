@@ -4,15 +4,20 @@
 <body>
 <div class="root">
   <div class="container">
-    <header th:replace="fragments/common :: header-without-write-btn"></header>
+    <header th:replace="fragments/plain-header :: header"></header>
     <section>
       <div>
-        회원가입
-        <form method="post" action="/auth/sign-in">
-          <input type="text" name="username" id="username">
-          <input type="text" name="password" id="password">
-          <button type="button">로그인</button>
-        </form>
+        <h1 class="sign-in-label">Welcome </h1>
+        <div class="form-box">
+          <input type="text" id="username" placeholder="아이디">
+          <input type="password" id="password" placeholder="비밀번호">
+          <button id="login-btn">로그인</button>
+        </div>
+      </div>
+      <div class="sign-up-link-box">
+        <span>처음이시라면 </span>
+        <a href="/auth/sign-up"><span class="link-text">회원가입</span></a>
+        <span>을 이용해주세요</span>
       </div>
     </section>
     <footer th:replace="fragments/common :: footer"></footer>
@@ -20,6 +25,58 @@
 </div>
 </body>
 </html>
+<script>
+/**/
+document.querySelector("#login-btn").onclick = () => {
+  data = {
+    username : document.querySelector("#username").value,
+    password : document.querySelector("#password").value
+  }
+  console.log(data);
+  
+  axios.post('/auth/login', Qs.stringify(data), {headers : {'Content-Type': 'application/x-www-form-urlencoded'}})
+  .then((response) =>{
+    window.location.href = "/";
+  })
+  .catch((e) => {
+    alert("로그인에 실패하였습니다.")
+  })
+}
+</script>
 
+<style>
+/**/
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sign-in-label {
+  font-size: 48px;
+  padding-bottom: 30px;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.form-box input {
+  height: 35px;
+  margin-bottom: 30px;
+}
+
+.sign-up-link-box {
+  padding-top : 30px;
+}
+
+.sign-up-link-box .link-text {
+  color : #2E8BC0;
+}
+</style>
 
 

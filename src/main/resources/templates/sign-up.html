@@ -4,14 +4,28 @@
 <body>
 <div class="root">
   <div class="container">
-    <header th:replace="fragments/common :: header-without-write-btn"></header>
+    <header th:replace="fragments/plain-header :: header"></header>
     <section>
       <div>
-        sign-up
-        <form method="post" action="/auth/sign-up">
-          <input type="text" name="username" id="username">
-          <input type="text" name="password" id="password">
-          <button>회원가입</button>
+        <h1 class="sign-up-label">Sign up</h1>
+        <form class="form-box" method="post" action="/auth/sign-up">
+          <div class="input-wrapper">
+            <input type="text" name="username" id="username" placeholder="아이디">
+            <span class="error-message" th:text="${usernameErrorMessage}"></span>
+          </div>
+          <div class="input-wrapper">
+            <input type="password" name="password" id="password" placeholder="비밀번호">
+            <span class="error-message" th:text="${passwordErrorMessage}"></span>
+          </div>
+          <div class="input-wrapper">
+            <input type="password" id="password-confirm" placeholder="비밀번호 확인">
+          </div>
+          <div class="input-wrapper">
+            <input type="text" name="nickname" id="nickname" placeholder="닉네임">
+            <span class="error-message" th:text="${nicknameErrorMessage}"></span>
+          </div>
+          <p class="error-message" th:text="${signUpErrorMessage}"></p>
+          <button id="signup-btn" type="submit">회원가입</button>
         </form>
       </div>
     </section>
@@ -19,4 +33,53 @@
   </div>
 </div>
 </body>
+<script>
+  var signupBtn = document.querySelector("#signup-btn");
+  signupBtn.onclick = () => {
+    var password = document.querySelector("#password").value;
+    var passwordConfirm = document.querySelector("#password-confirm").value;
+    if(password !== passwordConfirm ) {
+      alert("비밀번호 확인값이 일치하지 않습니다")
+      return false;
+    }
+  };
+</script>
+<style>
+  section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+.sign-up-label {
+  font-size: 48px;
+  padding-bottom: 30px;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.form-box input {
+  height: 35px;
+}
+.error-message {
+  padding-bottom: 20px;
+  color: #2E8BC0
+}
+
+.input-wrapper {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper > input {
+  margin-bottom : 10px;
+}
+
+</style>
 </html>

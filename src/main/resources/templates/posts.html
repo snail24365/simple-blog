@@ -6,49 +6,32 @@
   <div class="container">
     <header th:replace="fragments/common :: header"></header>
     <section>
+      <div class="placeholder-box" th:if="${posts.size() == 0}">
+        Empty Post
+      </div>
       <ul class="post-container" th:each="post : ${posts}">
         <li class="post-item card post">
-          <a href="/post/1">
+          <a th:href="@{/post/{postId}(postId=${post.id})}">
             <div>
               <h1 th:text="${post.title}" class="post-title">post tile</h1>
-              <p th:text="${post.contents}" class="post-contents">
-                Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .
-              </p>
+              <p th:text="${post.contents}" class="post-contents"></p>
+              <div class="date-wrapper">
+                <span class="created-at" th:text="${post.beautifyDate()}">2018.04.29</span>
+              </div>
+
             </div>
           </a>
         </li>
-        <li class="post-item card post">
-          <a href="/post/1">
-            <div>
-              <h1 th:text="${post.title}" class="post-title">post tile</h1>
-              <p th:text="${post.contents}" class="post-contents">
-                Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .Loermemfe sdsadijqw ds klfdsfip jefpisf skdlf dsopfjsdf ojds fopjdsfop sd. fdskf dsofk sd .
-              </p>
-            </div>
-          </a>
-        </li>
-        
       </ul>
-      
       <div class="page-index-bar">
         <ul class="index-list">
-          <span class="index-left-btn">&lt;</span>
           <th:block th:each="index : ${pageIndexes}">
-            <a href="/post/3">
-              <span class="index" th:text="${index}">1</span>
+            <a th:href="@{/post?pageId={id}(id=${index-1})}">
+              <span class="index" th:text="${index}"
+                    th:classappend="${index-1==currentPage ? 'current-page' : ''}"
+              >1</span>
             </a>
           </th:block>
-          <span th:text="${index}">
-            <a href="/post/3">
-              <span class="index" th:text="${index}">1</span>
-            </a>
-          </span>
-          <span th:text="${index}">
-            <a href="/post/3">
-              <span class="index" th:text="${index}">1</span>
-            </a>
-          </span>
-          <span class="index-right-btn">&gt;</span>
         </ul>
       </div>
       

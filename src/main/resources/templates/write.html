@@ -1,8 +1,51 @@
-
-<div>
-  <form method="post" action="/post/write">
-    <input type="text" name="title" id="title">
-    <input type="text" name="contents" id="contents">
-    <button type="submit">등록</button>
-  </form>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common :: head"></head>
+<body>
+<div class="root">
+  <div class="container">
+    <header th:replace="fragments/common :: header"></header>
+    <section>
+      <div>
+        <form class="form-box" method="post" action="/post/write">
+          <input class="title-paragraph card" type="text" name="title" id="title" placeholder="제목">
+          <textarea class="contents-paragraph card" type="text" name="contents" id="contents" placeholder="본문"></textarea>
+          <button class="enroll-btn" type="submit">등록</button>
+        </form>
+      </div>
+    </section>
+    <footer th:replace="fragments/common :: footer"></footer>
+  </div>
 </div>
+</body>
+<style>
+/**/
+.card {
+  border: 16px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: #AAA 1px 2px 3px 4px;
+}
+
+.title-paragraph {
+  background-color: #ddd;
+  font-size: 36px;
+}
+
+.contents-paragraph {
+  min-height: 400px;
+  font-size: 18px;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.enroll-btn {
+  height: 34px;
+}
+
+</style>
+</html>

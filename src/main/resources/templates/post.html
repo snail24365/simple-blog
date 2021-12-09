@@ -8,9 +8,11 @@
     <section>
       <div>
         <div th:object="${post}">
-          <p class="title-paragraph card"><span th:text="*{title}">Sebastian</span>.</p>
-          <hr/>
-          <p class="contents-paragraph card"><span th:text="*{contents}">Pepper</span>.</p>
+          <p class="title-paragraph card"><span th:text="*{title}">Post Specific Title</span></p>
+          <br/>
+          <p class="contents-paragraph card"><span
+                  style="white-space: pre-wrap" th:text="*{contents}"
+          >This is contents</span></p>
         </div>
       </div>
     </section>
@@ -18,4 +20,21 @@
   </div>
 </div>
 </body>
+<script>
+/**/
+
+document.querySelector("#deleteButton").onclick = (e) => {
+  var postId = parseInt(window.location.pathname.replace("/post/", ""));
+  var url = "/post/" + postId
+
+  axios.delete(url, null, {headers : {'Content-Type': 'application/x-www-form-urlencoded'}})
+    .then((response) =>{
+      window.location.href = "/";
+    })
+    .catch((e) => {
+      alert("삭제에 실패하였습니다. 다시 요청해주세요.")
+    }
+  );
+}
+</script>
 </html>

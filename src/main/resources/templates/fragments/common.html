@@ -5,32 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="/css/common.css">
-  <title>Document</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.2/qs.min.js" integrity="sha512-ErYZLDi4WRoox2JhOIADWBydTRhMJ0KIXnv5C1GvuY8YooLGapnebaM3iRGhwS6/E9ONXj0MRXp6bhu73sdFkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <title>Simple Blog</title>
 </head>
 <body>
 <div class="root">
   <div class="container">
     <header th:fragment="header">
       <div class="header-inner">
-        <span class="header-title">
-          Nickname's Blog2
+        <a href="/">
+        <span class="header-title" th:text="${nickname} + '\'s Blog'">
+          Nickname's Blog
         </span>
-        <a href="/post/write">
-          <div class="writing-link-btn">
-            <i class='bx bx-edit-alt' ></i>
-          </div>
         </a>
+        <div class="header-right-box">
+
+          <div class="tooltip">
+            <a href="/post" th:if="${hideListButton == null}">
+              <div class="link-btn">
+                <i class='bx bx-list-ul'></i>
+              </div>
+            </a>
+            <div class="tooltip-content">
+              <p>목록</p>
+            </div>
+          </div>
+          <div class="tooltip">
+            <a href="/post/write">
+              <div class="link-btn">
+                <i class='bx bx-edit-alt' ></i>
+              </div>
+            </a>
+            <div class="tooltip-content">
+              <p>새 글 작성</p>
+            </div>
+          </div>
+          <div class="tooltip">
+            <a th:if="${isPostViewPage}" th:href="@{/post/modify?postId={id}(id=${post.id})}" id="updateButton">
+              <div class="link-btn">
+                <i class='bx bx-edit'></i>
+              </div>
+            </a>
+            <div class="tooltip-content">
+              <p>수정</p>
+            </div>
+          </div>
+          <div class="tooltip">
+            <a th:if="${isPostViewPage}" id="deleteButton" class="hover-pointer">
+              <div class="link-btn">
+                <i class='bx bx-trash'></i>
+              </div>
+            </a>
+            <div class="tooltip-content">
+              <p>삭제</p>
+            </div>
+          </div>
+          <div class="tooltip">
+            <a href="/logout">
+              <div class="link-btn">
+                <i class='bx bx-exit'></i>
+              </div>
+            </a>
+            <div class="tooltip-content">
+              <p>로그아웃</p>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
+    <div>
 
-    <header th:fragment="header-without-write-btn">
-      <div class="header-inner">
-        <span class="header-title">
-          Nickname's Blog2
-        </span>
-      </div>
-    </header>
-
+    </div>
     <section th:fragment="section">
       <ul class="post-container" th:each="post : ${posts}">
         <li class="post-item card post">
