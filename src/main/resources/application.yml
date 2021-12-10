@@ -6,7 +6,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/simpleblog?serverTimezone=UTC&characterEncoding=UTF-8
-    username: msb5192
+    username: root
     password:
 
 #  datasource:
@@ -16,7 +16,8 @@ spring:
 #    driver-class-name: org.h2.Driver
 
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect #H2Dialect
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     open-in-view: true
     hibernate:
       ddl-auto: update
