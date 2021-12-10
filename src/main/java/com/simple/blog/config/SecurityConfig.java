@@ -15,7 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity//(debug = true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Autowired
@@ -26,11 +26,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     return new BCryptPasswordEncoder();
   }
 
+  /*
   @Override
   public void configure(WebSecurity web) throws Exception {
     web.ignoring()
       .antMatchers("/h2-console/**", "/favicon.ico");
   }
+  */
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
