@@ -5,9 +5,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/simpleblog?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/simpleblog
     username: msb5192
-    password: antmql!23
+    password:
 
 #  datasource:
 #    url: jdbc:h2:file:~/blog
@@ -20,7 +20,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     open-in-view: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
