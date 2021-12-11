@@ -20,12 +20,7 @@ public class BlogApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BlogApplication.class, args);
 	}
-
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(BlogApplication.class);
-	}
-
+	
 	/*
 	@Bean
 	public CommandLineRunner test(PostRepository postRepository, UserService userService) {
