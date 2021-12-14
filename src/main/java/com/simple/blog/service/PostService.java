@@ -1,6 +1,6 @@
 package com.simple.blog.service;
 
-import com.simple.blog.exception.NotAuthorizedException;
+import com.simple.blog.exception.NotAuthenticatedException;
 import com.simple.blog.model.Post;
 import com.simple.blog.model.User;
 import com.simple.blog.repository.PostRepository;
@@ -21,7 +21,7 @@ public class PostService {
   public void deleteById(Long postId, User user) {
     Post post = postRepository.findById(postId).orElseThrow();
     if(!post.getAuthor().isSameUser(user)) {
-      throw new NotAuthorizedException();
+      throw new NotAuthenticatedException();
     }
     postRepository.deleteById(postId);
   }
@@ -30,7 +30,7 @@ public class PostService {
   public void update(Long postId, Post newPost, User user) {
     Post oldPost = postRepository.findById(postId).orElseThrow();
     if(!oldPost.getAuthor().isSameUser(user)) {
-      throw new NotAuthorizedException();
+      throw new NotAuthenticatedException();
     }
     oldPost.setTitle(newPost.getTitle());
     oldPost.setContents(newPost.getContents());
